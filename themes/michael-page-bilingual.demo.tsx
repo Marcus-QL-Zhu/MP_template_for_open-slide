@@ -1,12 +1,6 @@
 import michaelPageLogo from '@assets/logos/michael-page-logo.jpg';
-import { type DesignSystem, type Page, type SlideMeta, useSlidePageNumber } from '@open-slide/core';
+import { type DesignSystem, type Page, useSlidePageNumber } from '@open-slide/core';
 import type { ReactNode } from 'react';
-
-export const meta: SlideMeta = {
-  title: 'Michael Page Template',
-  theme: 'michael-page-bilingual',
-  createdAt: '2026-07-21T00:00:00.000Z',
-};
 
 export const design: DesignSystem = {
   palette: { bg: '#ffffff', text: '#22174e', accent: '#6864ff' },
@@ -501,4 +495,4 @@ const Process: Page = () => (
   </div>
 );
 
-export default [Cover, Capabilities, Process] satisfies Page[];
+export default [Cover, Capabilities, Process];

@@ -1,205 +1,103 @@
 # MP_template_for_open-slide
 
-A Michael Page-style bilingual presentation template for [open-slide](https://www.npmjs.com/package/@open-slide/core).
+The approved Michael Page bilingual template for [open-slide](https://www.npmjs.com/package/@open-slide/core), updated for the current communication colours, logo, and typography.
 
-This project gives you a ready-to-edit corporate recruitment deck style: white canvas, Michael Page blue, thin grey rules, bilingual Chinese/English typography, reusable footer/header patterns, and a three-page sample deck.
+## Brand system
 
-## What is included
+- Deep purple `#22174E` for headings, authoritative text, and the footer stripe.
+- Electric violet `#6864FF` for navigation, rules, and emphasis.
+- Aptos Display for display text and Aptos for body text, with Chinese-safe fallbacks.
+- The current Michael Page logo image is used directly; it is never rebuilt as text.
+- Layouts are typographic, diagrammatic, and data-led. Portraits and stock photography are excluded by default.
 
-- `slides/michael-page-template/index.tsx` - the editable example deck.
-- `themes/michael-page-bilingual.md` - theme guide, palette, typography, layout rules, and copy-paste components.
-- `assets/logos/michael-page-logo.jpg` - logo asset used by the sample deck.
-- `vercel.json` and `netlify.toml` - static deployment config.
+## Included files
 
-## Requirements
+- `slides/michael-page-template/index.tsx` — editable three-page starter deck with the approved theme selected.
+- `themes/michael-page-bilingual.md` — theme guide and source of truth.
+- `themes/michael-page-bilingual.demo.tsx` — theme gallery preview used by open-slide.
+- `assets/logos/michael-page-logo.jpg` — current approved logo asset.
+- `scripts/verify-michael-page-template.mjs` — verifies the current brand signals and theme selection.
 
-- Node.js 18 or newer.
-- pnpm. If you do not have pnpm, run:
-
-```bash
-corepack enable
-```
-
-## Install
+## Install and run
 
 ```bash
 git clone https://github.com/Marcus-QL-Zhu/MP_template_for_open-slide.git
 cd MP_template_for_open-slide
 pnpm install
-```
-
-## Run locally
-
-```bash
 pnpm dev
 ```
 
 Open:
 
 ```text
+http://localhost:5173/themes/michael-page-bilingual
 http://localhost:5173/s/michael-page-template
 ```
 
-If port `5173` is already in use, change `port` in `open-slide.config.ts`.
-
-## Use in an existing open-slide project
-
-If you already have your own open-slide workspace, you do not need to clone this repo as a standalone project. Copy the template folders into your project:
+Build and verify:
 
 ```bash
-cp -r themes/michael-page-bilingual.md /path/to/your-open-slide-project/themes/
-cp -r assets/logos /path/to/your-open-slide-project/assets/
-cp -r slides/michael-page-template /path/to/your-open-slide-project/slides/
+pnpm build
+pnpm typecheck
+pnpm verify:template
 ```
 
-On Windows PowerShell:
+## Manual theme selection
 
-```powershell
-Copy-Item -Recurse themes\michael-page-bilingual.md C:\path\to\your-open-slide-project\themes\
-Copy-Item -Recurse assets\logos C:\path\to\your-open-slide-project\assets\
-Copy-Item -Recurse slides\michael-page-template C:\path\to\your-open-slide-project\slides\
-```
-
-Then open the copied deck:
-
-```text
-http://localhost:5173/s/michael-page-template
-```
-
-For your own deck, set the slide metadata to use the theme:
+Every Michael Page deck should use the stable theme ID:
 
 ```tsx
+import type { Page, SlideMeta } from '@open-slide/core';
+import michaelPageLogo from '@assets/logos/michael-page-logo.jpg';
+
 export const meta: SlideMeta = {
   title: 'Your deck title',
   theme: 'michael-page-bilingual',
 };
+
+const Cover: Page = () => <div>...</div>;
+
+export default [Cover] satisfies Page[];
 ```
 
-This covers two workflows: new users can clone this repo directly, while existing open-slide users can copy only `themes/`, `assets/`, and `slides/` into their current workspace.
+## Use in the open-slide framework repo
 
-## Edit the deck
-
-Open:
+When this template is installed in the open-slide monorepo, the presentation root is `apps/demo`. Keep the same files under:
 
 ```text
-slides/michael-page-template/index.tsx
+apps/demo/themes/michael-page-bilingual.md
+apps/demo/themes/michael-page-bilingual.demo.tsx
+apps/demo/slides/michael-page-template/index.tsx
+apps/demo/assets/logos/michael-page-logo.jpg
 ```
 
-Each page is a React component. The deck exports an array of pages:
+Run `node scripts/verify-michael-page-template.mjs` from the framework root. The verifier resolves `apps/demo` automatically.
 
-```tsx
-export default [Cover, Capabilities, Process] satisfies Page[];
-```
+## Use in another standalone project
 
-To add a page:
-
-1. Create a new `const MyPage: Page = () => (...)`.
-2. Add it to the exported array.
-3. Reuse the built-in `Header`, `Footer`, `Eyebrow`, and palette patterns.
-
-To create a new deck, copy the folder:
-
-```bash
-cp -r slides/michael-page-template slides/my-client-deck
-```
-
-Then edit the copied `index.tsx`.
-
-## Build
-
-```bash
-pnpm build
-```
-
-The static output is generated in:
-
-```text
-dist/
-```
-
-Preview the built site locally:
-
-```bash
-pnpm preview
-```
+Copy `themes/`, `assets/logos/`, and `slides/michael-page-template/` into the target open-slide project. Keep `theme: 'michael-page-bilingual'` in the deck metadata.
 
 ## Deploy
 
-### Vercel
-
-1. Import this GitHub repository into Vercel.
-2. Use the default framework detection or set:
-   - Install command: `pnpm install`
-   - Build command: `pnpm build`
-   - Output directory: `dist`
-3. Deploy.
-
-### Netlify
-
-This repo includes `netlify.toml`, so Netlify can use:
-
-```text
-Build command: pnpm build
-Publish directory: dist
-```
-
-### Any static host
-
-Run:
+Build output is written to `dist/` and can be deployed to Vercel, Netlify, or any static host:
 
 ```bash
 pnpm build
-```
-
-Then upload the `dist/` folder to your static hosting provider.
-
-## Export files
-
-Generated exports, previews, and scratch files should go under `outputs/`. That folder is ignored by Git.
-
-If you intentionally want to commit a generated artifact, force-add it:
-
-```bash
-git add -f outputs/path/to/file.pptx
+pnpm preview
 ```
 
 ## Brand and license notice
 
-The source code in this repository is licensed under MIT.
-
-Michael Page names, marks, logos, and visual identity assets belong to their respective owner. The included brand asset is provided as a template reference. Replace it with your own authorized asset unless you have permission to use Michael Page branding.
+The source code in this repository is licensed under MIT. Michael Page names, marks, logos, and visual identity assets belong to their respective owner and should be used only with authorization.
 
 ## 中文说明
 
-这是一个可直接运行的 open-slide 米高蒲志风格双语 PPT 模板。
+这是已验收的 open-slide 米高蒲志双语模板。新版以深紫 `#22174E`、电光紫 `#6864FF`、Aptos 字体和最新 Logo 为准，不默认使用真人或图库照片。
 
-常用命令：
+通过 skill 或手动创建 slides 时，都必须使用：
 
-```bash
-pnpm install
-pnpm dev
-pnpm build
-pnpm preview
+```tsx
+theme: 'michael-page-bilingual'
 ```
 
-本地预览地址：
-
-```text
-http://localhost:5173/s/michael-page-template
-```
-
-主要编辑文件：
-
-```text
-slides/michael-page-template/index.tsx
-```
-
-主题规范文件：
-
-```text
-themes/michael-page-bilingual.md
-```
-
-部署到 Vercel 或 Netlify 时，构建命令使用 `pnpm build`，输出目录使用 `dist`。
-
-如果你已经有自己的 open-slide 项目，也可以直接把本项目里的 `themes/`、`assets/`、`slides/` 复制到现有项目中使用。新用户可以直接 clone 运行，老用户可以把模板搬进自己的项目。
+运行 `pnpm verify:template` 可检查模板文件、品牌色、字体、Logo 和主题选择是否正确。

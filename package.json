@@ -9,7 +9,8 @@
     "dev": "open-slide dev",
     "build": "open-slide build",
     "preview": "open-slide preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify:template": "node scripts/verify-michael-page-template.mjs"
   },
   "keywords": [
     "open-slide",

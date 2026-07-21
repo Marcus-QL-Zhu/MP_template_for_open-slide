@@ -1,55 +1,58 @@
 ---
 name: Michael Page Bilingual
-description: Corporate recruitment deck theme - white canvas, Michael Page blue, precise grey rules, bilingual Chinese/English typography.
+description: Corporate recruitment deck theme with the current Michael Page logo, Aptos typography, deep purple, electric violet, and restrained supporting colours.
 ---
 
 # Michael Page Bilingual
 
 ## Palette
 
-The source PPT uses a restrained corporate system: white canvas, Michael Page blue for titles and rules, dark blue-grey body copy, pale grey dividers, and occasional mid-blue rings or chart segments. Public brand-color references consistently place Michael Page blue near `#0055A1` and grey near `#6D6E71`; the source deck itself samples closest to `#004FA3` / `#004FA2`, so this theme uses `#0055A1` as the communications anchor and keeps `#004FA3` for deep stripe/detail work.
+This theme uses the colours embedded in the latest Michael Page PowerPoint source. Deep purple carries the brand and all high-authority text. Electric violet handles navigation and emphasis. Supporting colours are signals for charts, processes, and proof points; they should not compete with the core pair.
 
-| Role       | Value     | Notes                                                        |
-| ---------- | --------- | ------------------------------------------------------------ |
-| bg         | `#ffffff` | primary slide background                                     |
-| text       | `#36444d` | body copy, readable on white                                 |
-| heading    | `#0055a1` | Michael Page communication blue; titles, labels, key lines   |
-| blueDeep   | `#004fa3` | extracted from source PPT shapes; bottom stripe and emphasis |
-| blueLight  | `#b8d2e8` | secondary chart/ring fills                                   |
-| grey       | `#6d6e71` | verified Michael Page grey reference                         |
-| muted      | `#7f8a92` | captions, secondary notes                                    |
-| rule       | `#d8d8d8` | thin separators and table rules                              |
-| ruleSoft   | `#eeeeee` | pale section dividers                                        |
-| accentDark | `#002840` | high-contrast diagram labels                                 |
+| Role     | Value     | Notes                                                  |
+| -------- | --------- | ------------------------------------------------------ |
+| bg       | `#ffffff` | primary slide background                               |
+| text     | `#22174e` | body copy and high-authority headings                  |
+| heading  | `#22174e` | Michael Page deep purple                               |
+| primary  | `#6864ff` | electric violet for rules, navigation, and key signals |
+| mint     | `#abf3ab` | positive or progress signal                            |
+| cyan     | `#8fe9ff` | information or comparison signal                       |
+| orchid   | `#e19fff` | secondary category signal                              |
+| coral    | `#ff7061` | important contrast or exception signal                 |
+| apricot  | `#ffc88f` | warm secondary signal                                  |
+| lemon    | `#ffffa9` | sparing highlight                                      |
+| muted    | `#6f6988` | captions and secondary notes                           |
+| rule     | `#d8d5e5` | separators and table rules                             |
+| ruleSoft | `#f1f0f6` | pale section dividers                                  |
 
 ## Typography
 
-- Display font: `'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', Arial, Aptos, system-ui, sans-serif` - weight 700 for Chinese titles and 600-700 for English titles.
-- Body font: `'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', Arial, Aptos, system-ui, sans-serif` - weight 400 with 600 for labels.
-- Type-scale overrides:
-  - Hero title: 68 px for Chinese/English mixed titles; use 82 px only for short English covers.
-  - Page heading: 48 px, weight 700, Michael Page blue.
-  - Section heading: 34 px, weight 700, blue or dark text.
-  - Body text: 25 px, line-height 1.55 for Chinese; 27 px, line-height 1.45 for English.
-  - Caption / source: 18 px, muted grey.
+The latest source template resolves primarily to Aptos, with Aptos Display used for display text. Chinese fallbacks follow immediately so bilingual slides remain stable across Windows and macOS.
+
+- Display font: `'Aptos Display', Aptos, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif`.
+- Body font: `Aptos, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif`.
+- Hero title: 68 px for mixed Chinese/English titles; up to 82 px for short English covers.
+- Page heading: 48 px, weight 700, deep purple.
+- Section heading: 34 px, weight 700.
+- Body text: 25 px, line-height 1.55 for Chinese; 27 px, line-height 1.45 for English.
+- Caption / source: 18 px, muted purple-grey.
 
 ## Layout
 
 - Canvas is horizontal 1920 x 1080.
-- Content padding: 96 px left/right, 82 px top, 86 px bottom. This preserves the generous white space of the portrait template while giving wide layouts room.
-- Logo grammar: use the provided `@assets/logos/michael-page-logo.jpg` wordmark on covers and in footers. Keep it on a white field, never recolor it, and do not recreate the mark manually. Reserve a fixed, non-shrinking logo area so the wordmark never wraps, clips, or collapses in narrow flex layouts.
-- Header grammar: title at top-left; a pale grey horizontal rule sits below the title band. Optional short kicker or bilingual subtitle sits under the title, not above it.
-- Footer grammar: a double blue stripe spans the bottom edge. The page marker sits bottom-right; the Michael Page wordmark plus a short practice label sits bottom-left.
+- Content padding: 96 px left/right, 82 px top, 86 px bottom.
+- Logo grammar: use the official `@assets/logos/michael-page-logo.jpg` wordmark. Keep it on a white field, never recolour, distort, crop, or recreate it. Reserve a fixed, non-shrinking logo area.
+- Header grammar: title at top-left; a pale lavender-grey rule sits below the title band. Optional bilingual subtitle sits below the title.
+- Footer grammar: deep purple bottom stripe with a thin electric-violet keyline. Page marker sits bottom-right; the wordmark and practice label sit bottom-left.
 - Main content families:
   - two-column narrative plus proof object;
-  - wide table with blue row labels and hairline grey rules;
-  - circular process/radar diagram with right-side notes;
-  - map or evidence image area with small caption rail.
-- Alignment: left aligned. Center only for circular diagrams or ceremonial cover elements.
+  - wide table with deep-purple row labels and hairline rules;
+  - circular process or radar diagram with controlled supporting colours;
+  - evidence area with a compact caption rail.
+- Alignment is left aligned. Center only for circular diagrams or ceremonial cover elements.
+- Default imagery is typographic, diagrammatic, or data-led. Do not use portraits or stock photography unless the user explicitly requests and supplies an approved image direction.
 
 ## Fixed components
-
-These are paste-ready. Copy them verbatim into a slide that uses this theme.
 
 ### Title
 
@@ -58,13 +61,12 @@ const Title = ({ children }: { children: React.ReactNode }) => (
   <h1
     style={{
       fontFamily:
-        "'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', Arial, Aptos, system-ui, sans-serif",
+        "'Aptos Display', Aptos, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif",
       fontSize: 48,
       fontWeight: 700,
       lineHeight: 1.2,
-      letterSpacing: 0,
       margin: 0,
-      color: '#0055a1',
+      color: '#22174e',
     }}
   >
     {children}
@@ -74,7 +76,7 @@ const Title = ({ children }: { children: React.ReactNode }) => (
 
 ### Footer
 
-Pull the page number from `useSlidePageNumber()` - never hardcode `pageNum` / `total` props.
+Pull the page number from `useSlidePageNumber()`; never hardcode page values.
 
 ```tsx
 import { useSlidePageNumber } from '@open-slide/core';
@@ -91,7 +93,7 @@ const Footer = ({ label = 'Expert in recruitment' }: { label?: string }) => {
           right: 0,
           bottom: 0,
           height: 18,
-          background: '#004fa3',
+          background: '#22174e',
         }}
       />
       <div
@@ -101,7 +103,7 @@ const Footer = ({ label = 'Expert in recruitment' }: { label?: string }) => {
           right: 0,
           bottom: 18,
           height: 4,
-          background: '#7fb5df',
+          background: '#6864ff',
         }}
       />
       <div
@@ -114,20 +116,12 @@ const Footer = ({ label = 'Expert in recruitment' }: { label?: string }) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           fontFamily:
-            "'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', Arial, Aptos, system-ui, sans-serif",
+            "Aptos, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif",
           fontSize: 18,
-          color: '#6d6e71',
+          color: '#6f6988',
         }}
       >
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 18,
-            minWidth: 460,
-            whiteSpace: 'nowrap',
-          }}
-        >
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 18, minWidth: 460 }}>
           <img
             src={michaelPageLogo}
             alt="Michael Page"
@@ -154,13 +148,13 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
       alignItems: 'center',
       gap: 12,
       fontFamily:
-        "'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', Arial, Aptos, system-ui, sans-serif",
+        "Aptos, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif",
       fontSize: 18,
       fontWeight: 700,
-      color: '#0055a1',
+      color: '#6864ff',
     }}
   >
-    <span aria-hidden style={{ width: 28, height: 3, background: '#0055a1' }} />
+    <span aria-hidden style={{ width: 28, height: 3, background: '#6864ff' }} />
     {children}
   </div>
 );
@@ -168,8 +162,8 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 ## Motion
 
-- Philosophy: subtle.
-- Use motion only for staged reveals in open-slide presentations. Static export should still read as a complete business document.
+- Keep motion subtle and limited to staged reveals.
+- Static export must always read as a complete business document.
 
 ```css
 @keyframes mp-fadeUp {
@@ -180,7 +174,7 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 ## Aesthetic
 
-Clean corporate recruitment consulting: white space, blue authority, quiet grey information structure, and evidence-first layouts. The design should feel like a premium client proposal, not a marketing splash page. Preserve the source deck's thin separators, top title band, bottom double stripe, circular process language, and table discipline. Avoid decorative gradients, heavy shadows, rounded SaaS cards, fake logos, stock-photo hero treatments, and dense portrait-page copy pasted into a wide slide.
+Clean recruitment consulting with generous white space, deep-purple authority, electric-violet navigation, quiet rules, and evidence-first layouts. Preserve the existing company template's disciplined title band, footer, circular process language, and table structure. Supporting colours are accents, not page backgrounds. Avoid decorative gradients, heavy shadows, rounded SaaS cards, fake logos, portrait photography, stock-photo hero treatments, and dense portrait-page copy pasted into a wide slide.
 
 ## Example usage
 
@@ -193,11 +187,11 @@ const Cover: Page = () => (
       width: '100%',
       height: '100%',
       background: '#ffffff',
-      color: '#36444d',
+      color: '#22174e',
       padding: '96px 96px 86px',
       boxSizing: 'border-box',
       fontFamily:
-        "'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', Arial, Aptos, system-ui, sans-serif",
+        "Aptos, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', system-ui, sans-serif",
       position: 'relative',
     }}
   >
@@ -207,10 +201,10 @@ const Cover: Page = () => (
       style={{ width: 360, minWidth: 360, height: 'auto', display: 'block', marginBottom: 66 }}
     />
     <Eyebrow>Hard Tech Practice</Eyebrow>
-    <h1 style={{ margin: '108px 0 0', fontSize: 68, lineHeight: 1.18, color: '#0055a1' }}>
+    <h1 style={{ margin: '108px 0 0', fontSize: 68, lineHeight: 1.18, color: '#22174e' }}>
       米高蒲志硬科技团队介绍
     </h1>
-    <p style={{ margin: '28px 0 0', fontSize: 28, lineHeight: 1.5, color: '#6d6e71' }}>
+    <p style={{ margin: '28px 0 0', fontSize: 28, lineHeight: 1.5, color: '#6f6988' }}>
       Bilingual proposal template for China and global client conversations.
     </p>
     <Footer label="Engineering & Manufacturing" />
